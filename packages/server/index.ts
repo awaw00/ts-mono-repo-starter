@@ -1,1 +1,1 @@
-require('../core').bootstrapNodeApp('server');
+require('../core/node').bootstrapNodeApp('server');

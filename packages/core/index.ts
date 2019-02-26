@@ -1,4 +1,3 @@
-import { addAlias, addPath } from 'module-alias';
 import * as path from 'path';
 
 export function root (...args: string[]) {
@@ -26,19 +25,4 @@ export function listRefProjects (projectName: string) {
   });
 
   return projects.reverse();
-}
-
-export function enableRefs (projectName: string) {
-  addPath(root('packages', projectName, 'node_modules'));
-
-  const refProjects = listRefProjects(projectName);
-  refProjects.forEach(project => {
-    addPath(root('packages', project, 'node_modules'));
-  });
-  addAlias('@', '../');
-}
-
-export function bootstrapNodeApp (projectName: string, appEntry: string = 'app') {
-  enableRefs(projectName);
-  require(`../${projectName}/${appEntry}`);
 }
