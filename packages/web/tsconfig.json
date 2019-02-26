@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../../lib/web",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../*"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../core"
+    }
+  ]
+}
