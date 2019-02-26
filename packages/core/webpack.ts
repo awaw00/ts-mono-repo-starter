@@ -3,10 +3,12 @@ import { Configuration } from 'webpack';
 import * as webpackMerge from 'webpack-merge';
 
 export function webpackConfigCreator (projectName: string) {
+  const env: string | undefined = process.env.NODE_ENV;
+
   const refProjects = listRefProjects(projectName);
   let config: Configuration = {
-    mode: (process.env.NODE_ENV || 'development' as any),
-    devtool: 'inline-source-map',
+    mode: (env || 'development' as any),
+    devtool: env === 'production' ? undefined : 'eval',
     context: root('lib'),
     entry: `./${projectName}/index.js`,
     output: {
